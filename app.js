@@ -6,13 +6,20 @@ const mongoose = require('mongoose')
 require('dotenv/config')
 const api = process.env.API_URL;
 
-const productsRouter = require('./routers/products')
-
 // middleware
 app.use(express.json())
 app.use(morgan('tiny'))
 
+//Routes
+const categoriesRoutes = require('./routers/categories')
+const productsRouter = require('./routers/products')
+const usersRouter = require('./routers/users')
+const ordersRouter = require('./routers/orders')
+
+app.use(`${api}/categories`, categoriesRoutes)
 app.use(`${api}/products`, productsRouter)
+app.use(`${api}/users`, usersRouter)
+app.use(`${api}/orders`, ordersRouter)
 
 mongoose.connect(process.env.CONNECTION_STRING,
     { useUnifiedTopology: true, useNewUrlParser: true })

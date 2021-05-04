@@ -10,3 +10,5 @@ function errorHandler(err, req, res, next) {
     // default server error
     return res.status(500).json(err)
 }
+
+module.exports = errorHandler;
